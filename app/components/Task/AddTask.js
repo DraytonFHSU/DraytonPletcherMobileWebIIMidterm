@@ -4,11 +4,12 @@ import DropDownPicker from "react-native-dropdown-picker";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Alert } from 'react-native';
 
+import taskData, { categories } from  "./TaskData"; // Import taskData
 
-import {categories} from  "./TaskData"
+import { useNavigation } from '@react-navigation/native'; // Add this to use navigation hook
 
 
-export default function AddTask({navigation}){
+export default function AddTask(){
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   //dropdown
@@ -38,15 +39,25 @@ export default function AddTask({navigation}){
     hideDatePicker();
   }
 
+  const [tasks, setTasks] = useState(taskData); // Set initial tasks from taskData
+
+const navigation = useNavigation();
+
 const handleSubmit = () => {
   if (title && description && category && selectedDate) {
-    const task = {
-        title,
-          description,
-          category,
-          date: selectedDate.toString()
-      };
-      console.log('Task:', task);
+    const newTask = {
+      id: tasks.length + 1,
+      title,
+      description,
+      category,
+      date: selectedDate.toString(),
+      image: require("../../../assets/Mad_Duck.jpg"),
+    };
+    const updatedTaskList = [...tasks, newTask];
+      console.log('Task:', newTask);
+
+      // Navigate back to TaskList and pass the updated task list as a parameter
+      navigation.navigate('TaskList', { updatedTaskList });
 
       // Clear the form fields
       setTitle('');
