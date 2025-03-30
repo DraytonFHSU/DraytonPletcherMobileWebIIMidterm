@@ -10,12 +10,13 @@ import { useNavigation } from '@react-navigation/native'; // Add this to use nav
 
 
 export default function AddTask(){
+  //title description
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   //dropdown
   const[open, setOpen] = useState(false);
   const[category, setCategory] = useState(null);
-
+//map for categories
   const categoryItems = categories.map((item) => ({
     value: item.value,
     label: item.label,
@@ -25,39 +26,40 @@ export default function AddTask(){
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  //hide and show boolean
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   }
-
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
   }
 
+  //on date confirm, set the date and hide the picker
   const handleConfirm = (date) => {
     setSelectedDate(date);
     console.warn("A date has been picked: ", date)
     hideDatePicker();
   }
 
+  //navigation to create a new list on submit
   const [tasks, setTasks] = useState(taskData); // Set initial tasks from taskData
-
-const navigation = useNavigation();
+  const navigation = useNavigation();
 
 const handleSubmit = () => {
   if (title && description && category && selectedDate) {
+    //make a new task
     const newTask = {
-      id: tasks.length + 1,
+      id: tasks.length + 1, //could be better
       title,
       description,
       category,
       date: selectedDate.toString(),
       image: require("../../../assets/Mad_Duck.jpg"),
     };
+    //update the list and send it over to Home
     const updatedTaskList = [...tasks, newTask];
-      console.log('Task:', newTask);
-
-      // Navigate back to TaskList and pass the updated task list as a parameter
-      navigation.navigate('TaskList', { updatedTaskList });
+    console.log('Task:', newTask);
+    navigation.navigate('Home', { updatedTaskList });
 
       // Clear the form fields
       setTitle('');

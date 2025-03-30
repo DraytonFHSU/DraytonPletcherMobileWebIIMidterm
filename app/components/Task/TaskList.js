@@ -8,20 +8,22 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useRoute } from '@react-navigation/native';
 import Task from './Task';
  
-const TaskList = ({ navigation }) => {
+const TaskList = () => {
+  //legacy code
   const [completedTasks, setCompletedTasks] = useState({});
-
-  const route = useRoute(); // Access the route object
-  const [taskList, setTaskList] = useState(taskData); // Default to the initial taskData
-
-const toggleTaskCompletion = (taskId) => {
+  const toggleTaskCompletion = (taskId) => {
   setCompletedTasks((prevState) => ({...prevState, [taskId]: !prevState[taskId], }));
 };
- 
-const deleteTask = (id) => {
+
+ //delete task
+  const deleteTask = (id) => {
   const newList = taskList.filter(task => task.id !== id);
   setTaskList(newList);
 };
+
+//for add task
+const route = useRoute(); // Access the route object
+const [taskList, setTaskList] = useState(taskData); // Default to the initial taskData
 
 useEffect(() => {
   if (route.params?.updatedTaskList) {
@@ -35,7 +37,7 @@ return (
     <FlatList
       data={taskList}
       keyExtractor={(task) => task.id.toString()}  
-      renderItem={({ item }) => {  {/* Destructure the item from the renderItem prop */}
+      renderItem={({ item }) => { 
         return (
           <Task
             image={item.image}

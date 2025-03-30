@@ -17,7 +17,6 @@ import AddTask from '../Task/AddTask';
 import { useState } from 'react';
 
 const Stack = createStackNavigator();
-//const [taskList, setTaskList] = useState(TaskData);
 
 export default function MyStack() {
   return (
@@ -25,7 +24,6 @@ export default function MyStack() {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="TaskDetails" component={TaskDetails} />
       <Stack.Screen name="AddTask" component={AddTask} />
-      <Stack.Screen name="TaskList" component={TaskList} />
     </Stack.Navigator>
   );
 }
