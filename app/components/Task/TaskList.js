@@ -35,8 +35,8 @@ return (
             onPress={() => navigation.navigate('TaskDetails', { task: item })}
             renderRightActions={() => (
               <View>
-                <TouchableWithoutFeedback onPress={() => deleteTask(item.id)}>
-                  <Text>Delete</Text>
+                <TouchableWithoutFeedback style={styles.deleteMenu} onPress={() => deleteTask(item.id)}>
+                  <Text style={styles.deleteMenu}>Delete</Text>
                 </TouchableWithoutFeedback>
               </View>
             )}
@@ -47,24 +47,6 @@ return (
     
   </SafeAreaView>
 );
-
-// return (
-//   <ScrollView style={styles.container}>
-//     {taskData.map((task) => (
-//       <Card key={task.id}>
-//         <Image source={task.image} style={styles.image} />
-//         <Text style={styles.title}>{task.title}</Text>
-//         <Text style={styles.description}>{task.description}</Text>
-//         <Button
-//           title={completedTasks[task.id] ? 'Mark Incomplete' : 'Mark Completed'}
-//           onPress={() => toggleTaskCompletion(task.id)}
-//           color={completedTasks[task.id] ? 'green' : 'blue'}
-//         />
-//         <Button title="View Details" onPress={() => navigation.navigate('TaskDetails', {task})}>View Details</Button>
-//       </Card>
-//     ))}
-//   </ScrollView>
-// );
 
 };
  
@@ -85,6 +67,10 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     color: 'gray',
+  },
+  deleteMenu: {
+    fontSize: 14,
+    backgroundColor: '#red',
   },
 });
  

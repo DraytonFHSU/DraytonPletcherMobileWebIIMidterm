@@ -10,6 +10,7 @@ const TaskDetails = ({ route }) => {
       <Text style={styles.id}>Task ID: {task.id}</Text>
       <Text style={styles.title}>{task.title}</Text>
       <Text style={styles.description}>{task.description}</Text>
+      <Text style={styles.category}>{task.category}</Text>
     </View>
   );
 };
@@ -30,6 +31,11 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   description: {
+    fontSize: 16,
+    color: '#555',
+    marginTop: 10,
+  },
+  category: {
     fontSize: 16,
     color: '#555',
     marginTop: 10,

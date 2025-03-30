@@ -13,7 +13,7 @@ export default function Task({image, title, description, onPress, renderRightAct
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
-      <TaskProperties />
+      {/* <TaskProperties /> */}
       {/* additional description, etc. change */}
       </>
     </TouchableOpacity>

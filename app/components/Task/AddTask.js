@@ -33,7 +33,8 @@ export default function AddTask({navigation}){
   }
 
   const handleConfirm = (date) => {
-    console.warn("A date has been picked: ")
+    setSelectedDate(date);
+    console.warn("A date has been picked: ", date)
     hideDatePicker();
   }
 
@@ -59,17 +60,17 @@ const handleSubmit = () => {
 
 return (
   <>
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.viewContainer}>
         <Text>Create Task</Text>
         <TextInput 
-          style={styles.title}
+          style={styles.input}
           placeholder="Enter Task Title"
           onChangeText={(title) => setTitle(title)}
           value={title}
         />
         <TextInput 
-          style={styles.description}
+          style={styles.input}
           placeholder="Enter Task Description"
           onChangeText={(description) => setDescription(description)}
           value={description}
@@ -91,17 +92,17 @@ return (
             title="Select Date & Time"
             onPress={() => setDatePickerVisibility(true)}
           />
-          <DateTimePicker
+          <DateTimePicker style={styles.date}
               isVisible={isDatePickerVisible}
               mode="datetime"
-              onConfirm={handleConfirm}
-              onCancel={() => setDatePickerVisibility(false)} // Fix the function name here
+              onConfirm={(date) => handleConfirm(date)}
+              onCancel={() => setDatePickerVisibility(false)}
             />
         </View>
         {selectedDate !== null && (
           <Text>{selectedDate.toString()}</Text>
         )}
-        <TouchableOpacity onPress={handleSubmit}>   
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>   
             <Text>Add Task</Text>
         </TouchableOpacity>
         </View>
@@ -111,10 +112,46 @@ return (
 }
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#fef',
-      alignItems: 'center',
+    screen: {
+      flex: 1,
+      backgroundColor: "#ffe4b5",
+      alignItems: "center",
       justifyContent: 'center',
+    },
+    viewContainer: {
+      flex: 1,
+      padding: 50,
+      backgroundColor: "#ffe4b5",
+    },
+    title:{
+      color: "black",
+      fontSize: 50,
+      textAlign: "center"
+    },
+    description:{
+      color: "black",
+      fontSize: 50,
+      textAlign: "center"
+    },
+    input: {
+      height: 60,
+      margin: 12,
+      borderWidth: 1,
+      padding: 20,
+      borderColor: "#ffe4b5",
+      borderBottomColor: "black"
+    },
+    dropdownText: {
+      color: "black",
+      fontWeight: "bold",
+    },
+    dropdown: {height: 100, borderRadius: 30, paddingTop: 30},
+    dropdownContainer: {
+      backgroundColor: "#dfdfdf",
+      borderRadius: 30,
+    },
+    date: {
+      paddingTop: 30,
     },
   });
   
