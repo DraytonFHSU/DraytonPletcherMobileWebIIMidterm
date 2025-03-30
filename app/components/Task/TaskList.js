@@ -32,6 +32,7 @@ return (
             image={item.image}
             title={item.title}
             description={item.description}
+            category={item.category}
             onPress={() => navigation.navigate('TaskDetails', { task: item })}
             renderRightActions={() => (
               <View>

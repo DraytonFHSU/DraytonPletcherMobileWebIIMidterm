@@ -3,7 +3,7 @@ import {Text, StyleSheet, View, ScrollView, Image, TouchableOpacity} from "react
 import TaskProperties from './TaskProperties';
 import { Swipeable } from 'react-native-gesture-handler';
 
-export default function Task({image, title, description, onPress, renderRightActions}) {
+export default function Task({image, title, description, category, onPress, renderRightActions}) {
   return (
     <Swipeable renderRightActions={renderRightActions}>
     <TouchableOpacity onPress={onPress}>
@@ -12,6 +12,7 @@ export default function Task({image, title, description, onPress, renderRightAct
         <Image style={styles.image} source={image}/>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
+        <Text style={styles.category}>{category}</Text>
       </View>
       {/* <TaskProperties /> */}
       {/* additional description, etc. change */}
@@ -28,11 +29,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     padding: 25,
     paddingTop: 20,
-    
+    marginBottom: 5,
   },
   image: {
-    height: 70,
-    width: 70,
+    height: 100,
+    width: 100,
     borderRadius: 35,
     marginRight: 10,
     padding: 20,
@@ -40,6 +41,18 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 25,
+    padding: 5,
+    color: '#FFF',
+  },
+  description: {
+    fontWeight: "bold",
+    fontSize: 20,
+    padding: 5,
+    color: '#FFF',
+  },
+  category: {
+    fontWeight: "bold",
+    fontSize: 20,
     padding: 5,
     color: '#FFF',
   },
